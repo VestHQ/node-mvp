@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose  = require( 'mongoose' )
 require('./db');
-const Customer = mongoose.model('CDP')
+const Customer = mongoose.model('Customer')
 
 const app = express();
 
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('/api/customers', (req, res) => {
-  Customer.find({}, {}, { sort: { 'total_cdps' : 1 }, limit: 10 }, function(err, data) {
+  Customer.find({}, {}, {}, function(err, data) {
     res.send(data)
   })
 });
